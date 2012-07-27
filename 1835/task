@@ -1,0 +1,37 @@
+1835. Swamp Doctor
+
+Time Limit: 3.0 second
+
+Memory Limit: 64 MB
+
+During his recent trip to the center of the Zone, stalker Shtyr got into an
+earlier unknown anomaly. Things looked black — he started growing fangs and his
+eyes turned red. Now only the Swamp Doctor can save Shtyr from turning into a
+vampire… Shtyr does not know the Doctor's email address but suggests that the
+address is stored in the pocket PC of the dead stalker Semetsky, which Shtyr has
+found recently. But the problem is that the shrewd Semetsky didn't use an
+address book but hid all the addresses in the contents of a big text file.
+Though Shtyr can read this file, he doesn't know which segment of the file is
+the Doctor's address.  Shtyr wants to find all segments of the text that can be
+addresses and send an email to each of them. How many emails will he send?  An
+email address in the vicinity of the Zone consists of a username and domain
+separated by the “@” symbol. The username and domain are nonempty strings
+consisting of lowercase English letters and dots. They cannot start or end with
+a dot and cannot contain two consecutive dots.  Input You are given the contents
+of the file from Semetsky's pocket PC. The file contains only symbols with ASCII
+codes from 32 to 126 and line breaks. The total size of the file is at most 106
+bytes.
+
+Output Output the number of different email addresses in Semetsky's file.
+
+Sample input   output
+
+a.b@c.d b@c.de.  @qq q@.q
+    
+
+5
+
+Hint The file contains the following addresses: “a.b@c”, “a.b@c.d”, “b@c”,
+“b@c.d”, “b@c.de”.  Problem Author: Alexey Samsonov (prepared by Dmitry Ivankov
+and Ivan Burmistrov) Problem Source: Ural Championship 2011 Tags: string
+algorithms  ( hide tags for unsolved problems)
