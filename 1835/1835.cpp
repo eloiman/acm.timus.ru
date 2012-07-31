@@ -14,6 +14,8 @@
 #define TRACE(...)  ;
 #endif
 
+#define ALLOC_SIZE	(32767)
+
 using namespace std;
 
 
@@ -22,7 +24,6 @@ struct STextBlock {
     char *pbegin;
     int ninput_end;
     char *pend;
-    unsigned long sz;
     char *pat;
 };
 
@@ -64,11 +65,6 @@ int parse_input()
                 if (tb) {
                     tb->ninput_end = ninput;
                     tb->pend = in;
-                    if (tb->ninput_begin == tb->ninput_end) {
-                        tb->sz = tb->pend - tb->pbegin;
-                    } else {
-                        tb->sz = 0; 
-                    }
                     s_state.email_blks.push_back(tb);
                     tb = NULL;
                     *in = '\0';
@@ -98,20 +94,20 @@ int parse_input()
 
 int read_input()
 {
-    char *pinput = (char *) malloc(INT_MAX);
+    char *pinput = (char *) malloc(ALLOC_SIZE);
     size_t res = 0;
     SInputBlock *input_block = NULL;
 
     do {
-        res = fread(pinput, INT_MAX - 1, 1, stdin);
+        res = fread(pinput, ALLOC_SIZE - 1, 1, stdin);
         if (!ferror(stdin)) {
-            pinput[INT_MAX - 1] = '\0';
+            pinput[ALLOC_SIZE - 1] = '\0';
             input_block = new SInputBlock();
             input_block->pinput = pinput;
-            input_block->sz = INT_MAX - 1;
+            input_block->sz = ALLOC_SIZE - 1;
             s_state.input.push_back(input_block);
             if (!feof(stdin)) {
-                pinput = (char *) malloc(INT_MAX);
+                pinput = (char *) malloc(ALLOC_SIZE);
             }
         }
     } while(!ferror(stdin) && !feof(stdin));
@@ -134,8 +130,8 @@ void trace_blocks()
         ploc = (*iter)->pbegin;
         while(nsegi <= (*iter)->ninput_end) {
             TRACE("%s", ploc);
-            ploc = s_state.input[nsegi]->pinput;
             nsegi++;
+            ploc = s_state.input[nsegi]->pinput;
         }
         TRACE("\n");
         iter++;
