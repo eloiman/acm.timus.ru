@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=utf-8"><TITLE>Timus Online Judge. Problem 1002</TITLE><LINK rel="stylesheet" type="text/css" href="/style.css"><LINK rel="shortcut icon" type="image/x-icon" href="/favicon.ico"></HEAD><BODY ALINK="#1A5CC8" VLINK="#1A5CC8" LINK="#1A5CC8"><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="0" CLASS="body"><TR><TD CLASS="caption"><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="0"><TR><TD WIDTH="130" CLASS="locale"><A HREF="/problem.aspx?space=1&amp;num=1002&amp;locale=en">ENG</A>&nbsp;&nbsp;<A HREF="/problem.aspx?space=1&amp;num=1002&amp;locale=ru">RUS</A></TD><TD CLASS="title">Timus Online Judge</TD><TD WIDTH="130"></TD></TR></TABLE></TD></TR><TR><TD CLASS="panel"><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="0"><TR><TD WIDTH="130" VALIGN="TOP" ALIGN="CENTER" STYLE="padding-bottom:5px;"><A HREF="http://www.usu.ru/"><IMG BORDER="0" SRC="/images/usu-summer.jpg" ALT="Ural State University"></A></TD><TD VALIGN="TOP" ALIGN="LEFT"><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="0" CLASS="panel"><TR><TH WIDTH="25%"><DIV>Online Judge</DIV></TH><TH WIDTH="25%"><DIV>Problems</DIV></TH><TH WIDTH="25%"><DIV>Authors</DIV></TH><TH WIDTH="25%"><DIV>Online contests</DIV></TH></TR><TR><TD VALIGN="TOP" ALIGN="LEFT"><A HREF="/">About Online Judge</A><BR><A HREF="/help.aspx?topic=faq">Frequently asked questions</A><BR><A HREF="/news.aspx">Site news</A><BR><A HREF="/forum/">Webboard</A><BR><A HREF="/help.aspx?topic=links">Links</A><BR></TD><TD VALIGN="TOP" ALIGN="LEFT"><A HREF="/problemset.aspx">Problem set</A><BR><A HREF="/submit.aspx">Submit solution</A><BR><A HREF="/status.aspx">Judge status</A><BR></TD><TD VALIGN="TOP"><A HREF="/register.aspx">Register</A><BR><A HREF="/authedit.aspx">Update your info</A><BR><A HREF="/ranklist.aspx">Authors ranklist</A><BR><FORM ACTION="/search.aspx" METHOD="GET" STYLE="margin:0.6em 0em 0em 0em;"><INPUT NAME="Str" SIZE="12" VALUE=""> <INPUT TYPE="SUBMIT" VALUE="Search"></FORM></TD><TD VALIGN="TOP"><A HREF="/contest.aspx">Current contest</A><BR><A HREF="/schedule.aspx">Scheduled contests</A><BR><A HREF="/archive.aspx">Archive</A><BR></TD></TR></TABLE></TD></TR></TABLE></TD></TR><TR><TD STYLE="padding-top: 32px; padding-bottom: 20px;"><TABLE ALIGN="CENTER" CELLSPACING="0" CELLPADDING="0"><COL WIDTH="800"><TR><TD><H2 class="problem_title">1002. Phone numbers</H2><DIV class="problem_limits">Time Limit: 2.0 second<BR>Memory Limit: 16 MB<BR></DIV><DIV ID="problem_text"><DIV CLASS="problem_par"><DIV CLASS="problem_par_normal">In the present world you frequently meet a lot of call numbers and
+they are going to be longer and longer. You need to remember such a
+kind of numbers. One method to do it in an easy way is to assign
+letters to digits as shown in the following picture:
+</DIV></DIV><DIV CLASS="problem_par_pre"><TABLE ALIGN="CENTER" CELLSPACING="0" CELLPADDING="0" BORDER="0"><TR><TD><PRE CLASS="intable">1 ij    2 abc   3 def
+4 gh    5 kl    6 mn
+7 prs   8 tuv   9 wxy
+        0 oqz
+</PRE></TD></TR></TABLE></DIV><DIV CLASS="problem_par"><DIV CLASS="problem_par_normal">This way every word or a group of words can be assigned a unique
+number, so you can remember words instead of call numbers. It is
+evident that it has its own charm if it is possible to find some
+simple relationship between the word and the person itself. So you can
+learn that the call number 941837296 of a chess playing friend of
+yours can be read as WHITEPAWN, and the call number 2855304 of your
+favourite teacher is read BULLDOG.
+</DIV></DIV><DIV CLASS="problem_par"><DIV CLASS="problem_par_normal">Write a program to find the shortest sequence of words (i.e. one
+having the smallest possible number of words) which corresponds to a
+given number and a given list of words. The correspondence is
+described by the picture above.
+</DIV></DIV><H3 CLASS="problem_subtitle">Input</H3><DIV CLASS="problem_par"><DIV CLASS="problem_par_normal">Input contains a series of tests. The first line of each test contains the call number, the
+transcription of which you have to find. The number consists of at
+most 100 digits. The second line contains the total number of the
+words in the dictionary (maximum is 50 000). Each of the remaining
+lines contains one word, which consists of maximally 50 small letters
+of the English alphabet. The total size of the input doesn't
+exceed 300 KB. The last line contains call number &minus;1.
+</DIV></DIV><H3 CLASS="problem_subtitle">Output</H3><DIV CLASS="problem_par"><DIV CLASS="problem_par_normal">Each line of output contains the shortest sequence
+of words which has been found by your program. The words are separated
+by single spaces. If there is no solution to the input data, the line
+contains text “<code>No solution.</code>”. If there are more solutions having the
+minimum number of words, you can choose any single one of them.
+</DIV></DIV><H3 CLASS="problem_subtitle">Sample</H3><TABLE CLASS="sample"><COL WIDTH="350"><COL WIDTH="350"><TR><TH>input</TH><TH>output</TH></TR><TR><TD><PRE CLASS="intable">7325189087
+5
+it
+your
+reality
+real
+our
+4294967296
+5
+it
+your
+reality
+real
+our
+-1
+</PRE></TD><TD><PRE CLASS="intable">reality our
+No solution.
+</PRE></TD></TR></TABLE><DIV CLASS="problem_source"><B>Problem Source: </B>Central European Olympiad in Informatics 1999<BR></DIV></DIV><DIV CLASS="problem_links"><A HREF="print.aspx?space=1&amp;num=1002" TARGET="_blank">Printable version</A>    <A HREF="detail.aspx?space=1&amp;num=1002">Statistics</A>    <A HREF="forum/?space=1&amp;num=1002">Discuss</A>    <A HREF="submit.aspx?space=1&amp;num=1002">Submit solution</A></DIV></TD></TR></TABLE></TD></TR><TR><TD CLASS="footer"><script language="JavaScript" type="text/javascript">
+<!--
+  uralweb_d=document;
+  uralweb_a='';
+  uralweb_a+='&amp;r='+escape(uralweb_d.referrer);
+  uralweb_js=10;
+//-->
+</script><script language="JavaScript1.1" type="text/javascript">
+<!--
+  uralweb_a+='&amp;j='+navigator.javaEnabled();
+  uralweb_js=11;
+//-->
+</script><script language="JavaScript1.2" type="text/javascript">
+<!--
+  uralweb_s=screen;
+  uralweb_a+='&amp;s='+uralweb_s.width+'*'+uralweb_s.height;
+  uralweb_a+='&amp;d='+(uralweb_s.colorDepth?uralweb_s.colorDepth:uralweb_s.pixelDepth);
+  uralweb_js=12;
+//-->
+</script><script language="JavaScript1.3" type="text/javascript">
+<!--
+  uralweb_js=13;
+//-->
+</script><script language="JavaScript" type="text/javascript">
+<!--
+  uralweb_d.write('<a href="http://www.uralweb.ru/rating/go/acmtimus">'+
+  '<img border="0" src="http://hc.uralweb.ru/hc/acmtimus?js='+
+  uralweb_js+'&amp;rand='+Math.random()+uralweb_a+
+  '" width="1" height="1" alt="УралWeb"><'+'/a>');
+//-->
+</script><noscript><a href="http://www.uralweb.ru/rating/go/acmtimus"><img border="0" src="http://hc.uralweb.ru/hc/acmtimus?js=0" width="1" height="1" alt="УралWeb"></a></noscript>© 2000-2009 <A HREF="/team.aspx">The Team</A>. All rights reserved.</TD></TR></TABLE></BODY></HTML>
