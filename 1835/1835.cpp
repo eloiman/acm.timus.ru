@@ -3,7 +3,8 @@
 #include <vector>
 
 #define NLETTERS        ('z' - 'a' + 1)
-#define INPUT_MAX       ()
+#define INPUT_MAX       (1000000UL)
+#define LETTER_MASK(L)  ( ('.' == L) ? 0 : (L - 'a' + 1) )
 
 using namespace std;
 
@@ -25,7 +26,7 @@ typedef struct {
     binding_tree r;
 } binding_tree_base;
 
-typedef map<unsigned int, binding_tree_base> map_binding_trees;
+typedef map<unsigned int, binding_tree_base *> map_binding_trees;
 typedef map_binding_trees::iterator map_binding_trees_iter;
 
 typedef enum {
@@ -36,7 +37,86 @@ typedef enum {
 } read_state;
 
 unsigned long g_nemails = 0;
-char g_email[1000000UL] = {0};
+char g_email[INPUT_MAX] = {0};
+
+map_binding_trees g_binding_trees;
+
+binding_tree * add_btree(char l, char r)
+{
+    lr_key lrkey;
+    binding_tree * btree;
+
+    lrkey.lr = {l, r};
+
+    btree = new binding_tree;
+    g_binding_trees[lrkey.int_key] = btree;
+
+    return btree;
+}
+
+binding_tree * find_btree(char l, char r)
+{
+    map_binding_trees_iter iter;
+    lr_key lrkey;
+    binding_tree * btree = NULL;
+
+    lrkey.lr = {l, r};
+
+    iter = g_binding_trees.find(lrkey.int_key);
+    if (iter != g_binding_trees::npos) {
+        btree = iter.second;
+    }
+
+    return btree;
+}
+
+unsigned long calc_new_combs(binding_tree *btree, char l, char r, unsigned long lpos, rpos)
+{
+    unsigned long out = 0;
+    unsigned long mask;
+    unsigned long binding;
+
+    if (l == 0) {
+        /*r*/
+        binding = btree->r[pos];
+        mask = LETTER_MASK(r);
+        if (0 == binding & mask) {
+            btree->r[pos] |= mask;
+            out += (lpos + 1);
+        }
+    } else if (r == 0) {
+        /*l*/
+        binding = btree->l[pos];
+        mask = LETTER_MASK(l);
+        if (0 == binding & mask) {
+            btree->l[pos] |= mask;
+            out += (rpos + 1);
+        }
+    } else {
+        /*l&r*/
+        binding = btree->l[pos];
+        mask = LETTER_MASK(l);
+        if (0 == binding & mask) {
+            btree->l[pos] |= mask;
+            out += (rpos + 1);
+        }
+    }
+}
+
+void process_email(char *s, char *at, char *e)
+{
+    if (s == e) {
+        printf("e == s\n");
+        return;
+    }
+
+    do {        
+        printf("%c", s == at ? '|' : *s);
+        s++;
+    } while (s <= e);
+    
+    printf("\n");
+}
 
 inline int isletter(char ch)
 {
@@ -46,20 +126,6 @@ inline int isletter(char ch)
 inline int validate_ch(char ch, char prev_ch)
 {
     return (('.' == ch && isletter(prev_ch)) || isletter(ch));
-}
-
-void process_email(char *s, char *e)
-{
-    if (s == e) {
-        printf("e == s\n");
-        return;
-    }
-
-    do {
-        printf("%c", *s++);
-    } while (s <= e);
-    
-    printf("\n");
 }
 
 void read_input(void)
@@ -75,7 +141,7 @@ void read_input(void)
     while ((*pin = getchar()) != EOF) {
         if ('\n' == *pin) {
             if (rstate == DOMAIN) {
-                process_email(pemail_start, pemail_end);
+                process_email(pemail_start, pdomain_start - 1, pemail_end);
             }
             pin = g_email;
             rstate = SEARCH_LOGIN;
@@ -100,7 +166,7 @@ void read_input(void)
             }
         } else if (rstate == DOMAIN) {
             if ('@' == *pin) {
-                process_email(pemail_start, pemail_end);
+                process_email(pemail_start, pdomain_start - 1, pemail_end);
                 if (isletter(prev_ch)) {
                     pemail_start = pdomain_start;
                     rstate = SEARCH_DOMAIN;
@@ -108,7 +174,7 @@ void read_input(void)
                     rstate = SEARCH_LOGIN;
                 }
             } else if (!validate_ch(*pin, prev_ch)) {
-                process_email(pemail_start, pemail_end);
+                process_email(pemail_start, pdomain_start - 1, pemail_end);
                 rstate = SEARCH_LOGIN;
             } else if (isletter(*pin)) {
                 pemail_end = pin;
